@@ -130,46 +130,8 @@ local function ComputePathToPoint(npc, destinationPoint)
 	return false
 end
 
--- DO NOT CONSIDER THIS FUNCTION, IT IS FOR DEBUGGING
--- DO NOT CONSIDER THIS FUNCTION, IT IS FOR DEBUGGING
--- DO NOT CONSIDER THIS FUNCTION, IT IS FOR DEBUGGING
-local function CreateDebugWaypoints(npc)
-	local waypoints = npc.Path:GetWaypoints()
-	if waypoints and #waypoints > 0 then
-		if workspace:FindFirstChild("Waypoints_DEBUG") then
-			workspace.Waypoints_DEBUG:Destroy()
-		end
-
-		local folder = Instance.new("Folder")
-		folder.Name = "Waypoints_DEBUG"
-		folder.Parent = workspace
-
-		for i, waypoint in ipairs(waypoints) do
-			local color = Color3.fromHSV(0.141833, 1, 1)
-			if i == 1 then
-				color = Color3.fromHSV(0.316333, 1, 1)
-			elseif i == #waypoints then
-				color = Color3.fromHSV(0.0274444, 1, 1)
-			end
-
-			local p = Instance.new("Part")
-			p.Name = "Waypoint_"..i
-			p.CanCollide = false
-			p.Anchored = true
-			p.Color = color
-			p.Size = Vector3.one
-			p.Position = waypoint.Position
-			p.Parent = folder
-		end
-	end
-end
--- DO NOT CONSIDER THIS FUNCTION, IT IS FOR DEBUGGING
--- DO NOT CONSIDER THIS FUNCTION, IT IS FOR DEBUGGING
--- DO NOT CONSIDER THIS FUNCTION, IT IS FOR DEBUGGING
-
 -- Just gets path waypoints
 local function GetPathWaypoints(npc)
-	CreateDebugWaypoints(npc) -- FOR DEBUG
 	return npc.Path:GetWaypoints()
 end
 
